@@ -9,33 +9,37 @@
               <b-field label="Email">
                 <b-input v-model="email" type="email"></b-input>
               </b-field>
- 
+
               <b-field label="Password">
                 <b-input v-model="password" type="password"></b-input>
               </b-field>
               
               <input type="submit" class="button is-fullwidth is-success" value="Login">
             </form>
+
+            <div class="has-text-centered">
+              <router-link class="button is-text has-text-primary" to="/sign-up">Não possui conta? Cadastre-se.</router-link>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
- 
+
 <style lang="scss" scoped>
   div.login-area {
     margin-top: 7%;
   }
 </style>
- 
- 
+
+
 <script>
- 
+
 import { mapActions } from 'vuex';
 import store from '../store';
 import router from '../router';
- 
+
 export default {
   data() {
     return {
@@ -43,23 +47,23 @@ export default {
       password: ""
     }
   },
- 
+
   computed: {
     loggedIn() {
       return store.getters['isLoggedIn']
     }
   },
- 
+
   created() {
     this.checkLogin(this.loggedIn);
   },
- 
+
   watch: {
     loggedIn(newValue) {
       this.checkLogin(newValue);
-    } 
+    }
   },
- 
+
   methods: {
     checkLogin(loggedIn) {
       if(loggedIn) {
@@ -69,5 +73,5 @@ export default {
     ...mapActions(['login'])
   }
 }
- 
+
 </script>
