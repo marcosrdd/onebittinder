@@ -1,7 +1,7 @@
 <template>
-  <span>Home</span>
+  <span>ChatList</span>
 </template>
-
+ 
 <script>
   export default {}
 </script>
