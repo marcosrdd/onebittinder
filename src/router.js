@@ -6,9 +6,11 @@ import Login from './views/Login';
 import SignUp from './views/SignUp';
 import UserShow from './views/UserShow';
 import ChatList from './views/ChatList';
-
+import UserEdit from './views/UserEdit';
+ 
+ 
 Vue.use(Router);
-
+ 
 const router = new Router({
   mode: 'history',
   routes: [
@@ -40,29 +42,34 @@ const router = new Router({
       component: UserShow
     },
     {
+      path: '/profile/edit',
+      name: 'user_edit',
+      component: UserEdit
+    },
+    {
       path: '/chats',
       name: 'chats',
       component: ChatList
     }
   ],
 });
-
-
+ 
+ 
 router.beforeEach((to, from, next) => {
   const publicPages = ['/login', '/sign-up'];
   const authRequired = !publicPages.includes(to.path);
-
+ 
   store.dispatch("loadLocalAccount");
   let loggedIn = store.getters['isLoggedIn'];
-
+ 
   if(authRequired && !loggedIn) {
     return next({
       path: '/login',
       query: { returnUrl: to.path }
     });
   }
-
+ 
   next();
 });
-
+ 
 export default router;
